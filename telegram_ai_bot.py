@@ -22,8 +22,13 @@ import anthropic
 # ⚙️ YAPILANDIRMA
 # ============================================================
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "BURAYA_BOT_TOKEN_YAZIN")
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "BURAYA_API_KEY_YAZIN")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "").strip()
+
+# Debug: Token kontrolü
+print(f"🔑 Bot Token uzunluğu: {len(TELEGRAM_BOT_TOKEN)} karakter")
+print(f"🔑 Bot Token başlangıcı: {TELEGRAM_BOT_TOKEN[:10]}..." if len(TELEGRAM_BOT_TOKEN) > 10 else "⚠️ Token çok kısa veya boş!")
+print(f"🔑 API Key uzunluğu: {len(ANTHROPIC_API_KEY)} karakter")
 
 BOT_NAME = "AI Asistan"
 BOT_USERNAME = ""  # Botunuzun @kullanıcı_adı
@@ -217,10 +222,10 @@ async def handle_error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def main():
     print(f"🤖 {BOT_NAME} başlatılıyor...")
 
-    if TELEGRAM_BOT_TOKEN == "BURAYA_BOT_TOKEN_YAZIN":
+    if not TELEGRAM_BOT_TOKEN:
         print("❌ HATA: TELEGRAM_BOT_TOKEN ayarlanmamış!")
         return
-    if ANTHROPIC_API_KEY == "BURAYA_API_KEY_YAZIN":
+    if not ANTHROPIC_API_KEY:
         print("❌ HATA: ANTHROPIC_API_KEY ayarlanmamış!")
         return
 
