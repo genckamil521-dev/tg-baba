@@ -429,6 +429,48 @@ async def stats_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ============================================================
 
 
+async def topluogret_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Toplu bilgi öğretir. Her satır ayrı bir bilgi. Kullanım: /topluogret sonra her satırda kategori | anahtar | bilgi"""
+    if ADMIN_IDS and update.effective_user.id not in ADMIN_IDS:
+        await update.message.reply_text("⛔ Bu komut sadece adminler içindir.")
+        return
+
+    text = update.message.text.replace("/topluogret", "").strip()
+    if not text:
+        await update.message.reply_text(
+            "📝 Kullanım: /topluogret\n"
+            "kategori | anahtar | bilgi\n"
+            "kategori | anahtar | bilgi\n"
+            "kategori | anahtar | bilgi\n\n"
+            "Her satır ayrı bir bilgi olarak kaydedilir."
+        )
+        return
+
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
+    success = 0
+    fail = 0
+
+    for line in lines:
+        parts = line.split("|")
+        if len(parts) >= 3:
+            category = parts[0].strip()
+            keyword = parts[1].strip()
+            content = "|".join(parts[2:]).strip()
+            if category and keyword and content:
+                add_knowledge(category, keyword, content, update.effective_user.id)
+                success += 1
+            else:
+                fail += 1
+        else:
+            fail += 1
+
+    await update.message.reply_text(
+        f"✅ {success} bilgi öğrenildi!\n"
+        f"{'❌ ' + str(fail) + ' satır hatalıydı.' if fail else ''}\n"
+        f"📚 Toplam bilgi bankası: {len(get_all_knowledge())} kayıt"
+    )
+
+
 async def ogret_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Bota yeni bilgi öğretir. Kullanım: /ogret kategori | anahtar | bilgi"""
     if ADMIN_IDS and update.effective_user.id not in ADMIN_IDS:
@@ -644,6 +686,7 @@ def main():
 
     # Bilgi bankası komutları
     app.add_handler(CommandHandler("ogret", ogret_command))
+    app.add_handler(CommandHandler("topluogret", topluogret_command))
     app.add_handler(CommandHandler("bilgi", bilgi_command))
     app.add_handler(CommandHandler("bilgiler", bilgiler_command))
     app.add_handler(CommandHandler("sil", sil_command))
