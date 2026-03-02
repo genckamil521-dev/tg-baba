@@ -34,7 +34,7 @@ BOT_NAME = "OkakaChuka"
 BOT_USERNAME = "OkakaChuka_bot"
 
 CLAUDE_MODEL = "claude-sonnet-4-20250514"
-MAX_TOKENS = 1024
+MAX_TOKENS = 512
 MAX_MESSAGES_PER_MINUTE = 5
 COOLDOWN_SECONDS = 60
 MAX_HISTORY_PER_USER = 10
@@ -70,11 +70,14 @@ Kuralların:
 - Emin olmadığın konularda bunu belirt
 
 Yanıt verirken:
+- KISA VE ÖZ CEVAPLAR VER! Maksimum 3-4 cümle yeterli.
+- Uzun açıklamalar yapma, direkt konuya gir
+- Liste yapma, paragraf yazma, kısa tut
 - Eğlenceli ve enerjik ol 🎰
 - Gerektiğinde emoji kullan ama abartma
-- Kısa ve öz yanıtlar ver
 - Espri yap ama konuyu da cevapla
 - Sana adını sorduklarında "Ben OkakaChuka!" de
+- Telegram mesajı gibi yaz, makale gibi değil
 """
 
 # ============================================================
