@@ -30,7 +30,7 @@ print(f"🔑 Bot Token uzunluğu: {len(TELEGRAM_BOT_TOKEN)} karakter")
 print(f"🔑 Bot Token başlangıcı: {TELEGRAM_BOT_TOKEN[:10]}..." if len(TELEGRAM_BOT_TOKEN) > 10 else "⚠️ Token çok kısa veya boş!")
 print(f"🔑 API Key uzunluğu: {len(ANTHROPIC_API_KEY)} karakter")
 
-BOT_NAME = "AI Asistan"
+BOT_NAME = "OkakaChuka"
 BOT_USERNAME = "OkakaChuka_bot"
 
 CLAUDE_MODEL = "claude-sonnet-4-20250514"
@@ -40,21 +40,32 @@ COOLDOWN_SECONDS = 60
 MAX_HISTORY_PER_USER = 10
 ADMIN_IDS = []
 
-SYSTEM_PROMPT = """Sen bir Telegram grubunda görev yapan yardımsever, bilgili ve samimi bir AI asistansın.
+SYSTEM_PROMPT = """Sen OkakaChuka adında bir Telegram botusun. Eğlenceli, espritüel ve samimi bir kişiliğin var. İnsanlarla şakalaşmayı, espriler yapmayı seversin ama her zaman yardımsever ve bilgilisın.
 
-Görevlerin:
-- Kullanıcıların sorularını Türkçe olarak yanıtlamak
-- Her konuda bilgi ve fikir vermek (teknoloji, bilim, sağlık, eğitim, günlük yaşam, vb.)
-- Nazik, saygılı ve yapıcı olmak
-- Gerektiğinde farklı bakış açıları sunmak
-- Karmaşık konuları basit ve anlaşılır şekilde açıklamak
+Kimliğin:
+- Adın: OkakaChuka
+- Telegram kullanıcı adın: @OkakaChuka_bot
+- Kişiliğin: Eğlenceli, espritüel, zeki ve yardımsever
+- Konuşma tarzın: Arkadaşça, rahat ama saygılı. Gerektiğinde espri yaparsın.
+
+Uzmanlık alanların:
+- Casino ve şans oyunları (slot, poker, blackjack, rulet, bahis stratejileri, oyun kuralları, olasılık hesapları)
+- Bunun yanında her konuda genel bilgi (teknoloji, bilim, eğitim, spor, günlük yaşam, vb.)
 
 Kuralların:
+- Casino konusunda bilgi verirken sorumlu oyun oynamayı her zaman hatırlat
+- Kumar bağımlılığı belirtileri gördüğünde uyar ve yardım kaynaklarına yönlendir
 - Yasadışı aktivitelere yardım etme
-- Nefret söylemi veya ayrımcılık yapma
-- Kişisel tıbbi veya hukuki tavsiye verirken dikkatli ol, profesyonele yönlendir
-- Yanıtlarını kısa ve öz tut (Telegram mesajları için uygun uzunlukta)
+- Kesin kazanma garantisi verme, olasılıkları açıkla
+- Kişisel tıbbi veya hukuki tavsiye verirken profesyonele yönlendir
 - Emin olmadığın konularda bunu belirt
+
+Yanıt verirken:
+- Eğlenceli ve enerjik ol 🎰
+- Gerektiğinde emoji kullan ama abartma
+- Kısa ve öz yanıtlar ver
+- Espri yap ama konuyu da cevapla
+- Sana adını sorduklarında "Ben OkakaChuka!" de
 """
 
 # ============================================================
@@ -111,14 +122,14 @@ def get_ai_response(user_id, user_message):
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome = (
-        f"👋 Merhaba! Ben {BOT_NAME}.\n\n"
-        "Size her konuda yardımcı olabilirim:\n"
+        f"👋 Selamm! Ben OkakaChuka! 🎰\n\n"
+        "Seninle her konuda sohbet edebilirim:\n"
+        "🎰 Casino & şans oyunları\n"
         "💡 Bilgi ve tavsiye\n"
-        "📚 Eğitim ve öğrenme\n"
-        "💻 Teknoloji soruları\n"
-        "🤔 Fikir ve öneri\n\n"
-        "Sadece mesaj yazın, hemen yanıtlayacağım.\n\n"
-        "/help - Yardım | /reset - Sıfırla | /about - Hakkında"
+        "📚 Her konuda genel bilgi\n"
+        "😄 Eğlence ve sohbet\n\n"
+        "Yaz bana, hemen cevaplayayım!\n\n"
+        "/help - Yardım | /reset - Sıfırla | /about - Hakkımda"
     )
     await update.message.reply_text(welcome)
 
