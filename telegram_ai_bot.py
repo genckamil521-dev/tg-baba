@@ -40,7 +40,7 @@ COOLDOWN_SECONDS = 60
 MAX_HISTORY_PER_USER = 10
 
 # Admin kullanıcı ID'leri
-ADMIN_IDS = []  # Örnek: [123456789]
+ADMIN_IDS = [7159443966]
 
 # Veritabanı dosyası
 DB_PATH = os.getenv("DB_PATH", "okakachuka.db")
