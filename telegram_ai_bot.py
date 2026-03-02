@@ -31,7 +31,7 @@ print(f"🔑 Bot Token başlangıcı: {TELEGRAM_BOT_TOKEN[:10]}..." if len(TELEG
 print(f"🔑 API Key uzunluğu: {len(ANTHROPIC_API_KEY)} karakter")
 
 BOT_NAME = "AI Asistan"
-BOT_USERNAME = ""  # Botunuzun @kullanıcı_adı
+BOT_USERNAME = "OkakaChuka_bot"
 
 CLAUDE_MODEL = "claude-sonnet-4-20250514"
 MAX_TOKENS = 1024
